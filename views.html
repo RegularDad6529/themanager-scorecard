@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giphy Views — TheManager Scorecard</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'JetBrains Mono', monospace; background: #020617; color: white; padding: 2rem; }
+.container { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+.stats { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+.stat { font-size: 0.875rem; color: #94a3b8; }
+.stat span { font-weight: 700; }
+.chart-container { background: rgba(15, 23, 42, 0.6); border-radius: 0.75rem; border: 1px solid #1e293b; padding: 1.5rem; }
+.back { color: #475569; text-decoration: none; font-size: 0.75rem; }
+.back:hover { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back">← Back to Scorecard</a>
+  <h1 style="margin-top: 1rem;">📊 Giphy Views Trend</h1>
+  <div class="stats">
+    <div class="stat">Current: <span style="color: #22d3ee">117.4K</span></div>
+    
+    
+  </div>
+  <div class="chart-container">
+    <svg viewBox="0 0 800 300" style="width: 100%;">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+      <polyline points="40.0,260.0" fill="none" stroke="#22d3ee" stroke-width="2" />
+      <circle cx="40.0" cy="260.0" r="4" fill="#22d3ee" />
+      <text x="40.0" y="248.0" fill="#94a3b8" font-size="9" text-anchor="middle">117.4K</text><text x="40.0" y="285" fill="#64748b" font-size="8" text-anchor="middle">07-17</text>
+    </svg>
+  </div>
+  <p style="color: #475569; font-size: 0.7rem; margin-top: 1rem;">Data collected daily from giphy.com/channel/RegularDad</p>
+</div>
+</body>
+</html>

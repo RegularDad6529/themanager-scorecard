@@ -5,29 +5,29 @@
     "channel_views": "117.4K",
     "local_meme_cards": 193,
     "local_complaint_cards": 20,
-    "failed": 2
+    "approval_gifs": 1
   },
   "meme_club": {
     "date": "2026-07-17",
     "active_submissions": 22,
-    "unique_voters": 9,
+    "unique_voters": 103,
     "recent_chat_participants": 12,
-    "current_winner": "RegularDad",
+    "current_winner": "nasimghanizadeh",
     "current_winner_votes": 15720171,
     "current_winner_voters": 19,
     "top_3": [
       {
-        "author": "RegularDad",
+        "artist": "nasimghanizadeh",
         "votes": 15720171,
         "voters": 19
       },
       {
-        "author": "brookr",
+        "artist": "sonyart",
         "votes": 6200661,
         "voters": 10
       },
       {
-        "author": "RegularDad",
+        "artist": "Bowo",
         "votes": 4673618,
         "voters": 6
       }
@@ -60,7 +60,7 @@
   "vetting": {
     "date": "2026-07-17",
     "total_assessments": 50,
-    "weekly_commits": 66,
+    "profiles_reviewed": 67,
     "pitfalls": 86
   },
   "cron": {
@@ -78,7 +78,7 @@
     "date": "2026-07-17",
     "total_submissions": 23,
     "completed": 9,
-    "in_progress": 9,
+    "tracking": 9,
     "ms_won": 19,
     "memes_tracked": 16
   },
@@ -87,6 +87,6 @@
     "card_images_posted": 275,
     "complaints_seen": 160,
     "complainers_recruited": 35,
-    "mentions_handled": 1101
+    "mentions_handled": 1104
   }
 }

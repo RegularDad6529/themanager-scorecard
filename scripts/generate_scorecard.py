@@ -183,11 +183,24 @@ def generate_html(config, data):
         else:
             grid_cols = "3"
         
+        # Wave link
+        wave_url = zone.get("wave_url", "")
+        link_html = ""
+        if wave_url:
+            link_html = f'<a href="{wave_url}" target="_blank" class="zone-link">↗</a>'
+        
+        # Graph link (Giphy views)
+        graph_url = zone.get("graph_url", "")
+        graph_link = ""
+        if graph_url:
+            graph_link = f' · <a href="{graph_url}" target="_blank" class="zone-link">📈 graph</a>'
+        
         zone_cards.append(f"""
         <div class="zone-card" style="border-color: {color}40;">
           <div class="zone-header" style="border-bottom-color: {color}30;">
             <span class="zone-icon">{icon}</span>
             <span class="zone-label" style="color: {color}">{label}</span>
+            {link_html}
           </div>
           <div class="zone-metrics" style="grid-template-columns: repeat({grid_cols}, 1fr);">
             {metrics_str}
@@ -301,6 +314,18 @@ h1 {{
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  flex: 1;
+}}
+
+.zone-link {{
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}}
+
+.zone-link:hover {{
+  color: #94a3b8;
 }}
 
 .zone-metrics {{
@@ -377,6 +402,130 @@ def screenshot_html(html_path, png_path, width=1200, height=800):
         page.screenshot(path=png_path, full_page=True)
         browser.close()
 
+def generate_views_graph(history):
+    """Generate a standalone HTML page with daily/weekly Giphy view trends."""
+    giphy_history = history.get("giphy", [])
+    
+    # Parse view counts to numeric values
+    data_points = []
+    for entry in giphy_history:
+        if "error" in entry:
+            continue
+        views_str = entry.get("channel_views", "0")
+        # Parse "117.4K" or "1.2M" format
+        try:
+            if "K" in views_str:
+                views = float(views_str.replace("K", "")) * 1000
+            elif "M" in views_str:
+                views = float(views_str.replace("M", "")) * 1_000_000
+            else:
+                views = float(views_str)
+            data_points.append({
+                "date": entry.get("date", ""),
+                "views": views,
+                "raw": views_str,
+            })
+        except (ValueError, TypeError):
+            continue
+    
+    if not data_points:
+        return "<html><body><p>No view data yet.</p></body></html>"
+    
+    # Build SVG line chart
+    max_views = max(d["views"] for d in data_points)
+    min_views = min(d["views"] for d in data_points) if data_points else 0
+    range_views = max(max_views - min_views, 1)
+    
+    chart_w = 800
+    chart_h = 300
+    padding = 40
+    plot_w = chart_w - padding * 2
+    plot_h = chart_h - padding * 2
+    
+    n = len(data_points)
+    points = []
+    for i, d in enumerate(data_points):
+        x = padding + (plot_w * i / max(n - 1, 1))
+        y = padding + plot_h - (plot_h * (d["views"] - min_views) / range_views)
+        points.append((x, y, d))
+    
+    # Build polyline
+    polyline = " ".join(f"{x},{y}" for x, y, _ in points)
+    
+    # Build data point circles and labels
+    circles = ""
+    labels = ""
+    for x, y, d in points:
+        circles += f'<circle cx="{x}" cy="{y}" r="4" fill="#22d3ee" />'
+        if n <= 14:  # Only show labels if not too many points
+            labels += f'<text x="{x}" y="{y - 12}" fill="#94a3b8" font-size="9" text-anchor="middle">{d["raw"]}</text>'
+            labels += f'<text x="{x}" y="{chart_h - 15}" fill="#64748b" font-size="8" text-anchor="middle">{d["date"][5:]}</text>'
+    
+    # Calculate weekly delta if we have enough data
+    weekly_delta = ""
+    if len(data_points) >= 7:
+        recent = data_points[-1]["views"]
+        week_ago = data_points[-7]["views"]
+        delta = recent - week_ago
+        pct = (delta / week_ago * 100) if week_ago > 0 else 0
+        weekly_delta = f'<div class="stat">Weekly: <span style="color: {"#34d399" if delta >= 0 else "#fb7185"}">{"+" if delta >= 0 else ""}{delta:,.0f} ({pct:+.1f}%)</span></div>'
+    
+    daily_delta = ""
+    if len(data_points) >= 2:
+        recent = data_points[-1]["views"]
+        prev = data_points[-2]["views"]
+        delta = recent - prev
+        daily_delta = f'<div class="stat">Daily: <span style="color: {"#34d399" if delta >= 0 else "#fb7185"}">{"+" if delta >= 0 else ""}{delta:,.0f}</span></div>'
+    
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giphy Views — TheManager Scorecard</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* {{ margin: 0; padding: 0; box-sizing: border-box; }}
+body {{ font-family: 'JetBrains Mono', monospace; background: #020617; color: white; padding: 2rem; }}
+.container {{ max-width: 900px; margin: 0 auto; }}
+h1 {{ font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }}
+.stats {{ display: flex; gap: 2rem; margin-bottom: 1.5rem; }}
+.stat {{ font-size: 0.875rem; color: #94a3b8; }}
+.stat span {{ font-weight: 700; }}
+.chart-container {{ background: rgba(15, 23, 42, 0.6); border-radius: 0.75rem; border: 1px solid #1e293b; padding: 1.5rem; }}
+.back {{ color: #475569; text-decoration: none; font-size: 0.75rem; }}
+.back:hover {{ color: #94a3b8; }}
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back">← Back to Scorecard</a>
+  <h1 style="margin-top: 1rem;">📊 Giphy Views Trend</h1>
+  <div class="stats">
+    <div class="stat">Current: <span style="color: #22d3ee">{data_points[-1]["raw"]}</span></div>
+    {daily_delta}
+    {weekly_delta}
+  </div>
+  <div class="chart-container">
+    <svg viewBox="0 0 {chart_w} {chart_h}" style="width: 100%;">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+      <polyline points="{polyline}" fill="none" stroke="#22d3ee" stroke-width="2" />
+      {circles}
+      {labels}
+    </svg>
+  </div>
+  <p style="color: #475569; font-size: 0.7rem; margin-top: 1rem;">Data collected daily from giphy.com/channel/RegularDad</p>
+</div>
+</body>
+</html>"""
+    
+    return html
+
 def main():
     config = load_config()
     data = load_data()
@@ -407,6 +556,17 @@ def main():
     with open(data_path, "w") as f:
         json.dump(data, f, indent=2)
     print(f"Data saved: {data_path}")
+    
+    # Generate views graph page
+    history_file = "/home/prenode/.hermes/profiles/themanager/seen/dashboard_history.json"
+    if os.path.exists(history_file):
+        with open(history_file) as f:
+            history = json.load(f)
+        views_html = generate_views_graph(history)
+        views_path = os.path.join(BASE, "views.html")
+        with open(views_path, "w") as f:
+            f.write(views_html)
+        print(f"Views graph saved: {views_path}")
     
     # Screenshot
     try:
