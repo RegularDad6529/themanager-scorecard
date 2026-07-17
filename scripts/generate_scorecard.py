@@ -187,13 +187,12 @@ def generate_html(config, data):
         wave_url = zone.get("wave_url", "")
         link_html = ""
         if wave_url:
-            link_html = f'<a href="{wave_url}" target="_blank" class="zone-link">↗</a>'
+            link_html = f'<a href="{wave_url}" target="_blank" class="zone-link">↗ wave</a>'
         
         # Graph link (Giphy views)
         graph_url = zone.get("graph_url", "")
-        graph_link = ""
         if graph_url:
-            graph_link = f' · <a href="{graph_url}" target="_blank" class="zone-link">📈 graph</a>'
+            link_html += f' <a href="{graph_url}" target="_blank" class="zone-link">📈 graph</a>'
         
         zone_cards.append(f"""
         <div class="zone-card" style="border-color: {color}40;">
