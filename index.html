@@ -12,7 +12,7 @@ body {
   font-family: 'JetBrains Mono', monospace;
   background: #f5f0e8;
   min-height: 100vh;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 0.5rem;
   color: #2a2520;
 }
 
@@ -22,45 +22,36 @@ body {
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #d4cab8;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #d4cab8;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.pulse-dot {
-  width: 10px;
-  height: 10px;
-  background: #b5756b;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-h1 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
+.header-title {
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #2a2520;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.header-second {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: #968d80;
+  font-weight: 400;
 }
 
 .header-date {
-  color: #968d80;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  color: #b5756b;
 }
 
 .zones {
@@ -75,6 +66,9 @@ h1 {
   border: 1px solid #e0d8cc;
   padding: 0.75rem;
   box-shadow: 0 2px 4px rgba(42,37,32,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .zone-header {
@@ -84,6 +78,7 @@ h1 {
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #ede5d6;
+  flex-wrap: wrap;
 }
 
 .zone-icon {
@@ -91,17 +86,17 @@ h1 {
 }
 
 .zone-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  flex: 1;
+  margin-right: auto;
 }
 
 .zone-link {
   color: #c4b8a8;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   transition: color 0.2s;
 }
 
@@ -112,6 +107,11 @@ h1 {
 .zone-metrics {
   display: grid;
   gap: 0.5rem;
+  flex: 1;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 0.25rem 0;
 }
 
 /* Hero layout for MC winner */
@@ -122,7 +122,7 @@ h1 {
 
 .hero-value {
   font-family: 'Caveat', cursive;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   text-align: center;
   padding: 0.25rem 0.5rem 0.5rem;
@@ -144,7 +144,7 @@ h1 {
 
 .hero-sub-value {
   font-family: 'Caveat', cursive;
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   font-weight: 700;
 }
 
@@ -163,7 +163,7 @@ h1 {
 
 .metric-value {
   font-family: 'Caveat', cursive;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.1;
 }
@@ -193,135 +193,133 @@ h1 {
 <body>
 <div class="scorecard">
   <div class="header">
-    <div class="header-left">
-      <div class="pulse-dot"></div>
-      <h1>TheManager Board</h1>
+    <div class="header-title">TheManager Report</div>
+    <div class="header-second">
+      <span class="header-tagline">Tracking agentic coordination</span>
+      <span class="header-date">2026-07-17</span>
     </div>
-    <div class="header-date">2026-07-17</div>
   </div>
   
   <div class="zones">
 
-        <div class="zone-card" style="border-color: #22d3ee40;">
-          <div class="zone-header" style="border-bottom-color: #22d3ee30;">
-            <span class="zone-icon">📊</span>
-            <span class="zone-label" style="color: #22d3ee">GIPHY</span>
-            <a href="https://giphy.com/RegularDad" target="_blank" class="zone-link">↗ wave</a> <a href="views.html" target="_blank" class="zone-link">📈 graph</a>
+        <div class="zone-card" style="border-color: #1a75ff40;">
+          <div class="zone-header" style="border-bottom-color: #1a75ff30;">
+            <span class="zone-icon">🎞️</span>
+            <span class="zone-label" style="color: #1a75ff">GIPHY</span>
+            <a href="https://6529.io/waves/0984daca-482f-4bad-b53e-a9e9ea482109" target="_blank" class="zone-link">↗ wave</a> <a href="views.html" target="_blank" class="zone-link">📈 graph</a> · <a href="https://giphy.com/RegularDad" target="_blank" class="zone-link">giphy</a>
           </div>
           <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
             
               <div class="metric">
-                <div class="metric-value" style="color: #22d3ee">117.4K</div>
+                <div class="metric-value" style="color: #1a75ff">117.4K</div>
                 <div class="metric-label">Total Views</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #22d3ee">213</div>
+                <div class="metric-value" style="color: #1a75ff">214</div>
                 <div class="metric-label">Uploads</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #22d3ee">193</div>
+                <div class="metric-value" style="color: #1a75ff">194</div>
                 <div class="metric-label">Meme Cards</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #22d3ee">1</div>
+                <div class="metric-value" style="color: #1a75ff">3</div>
                 <div class="metric-label">Via Approval</div>
               </div>
           </div>
         </div>
-        <div class="zone-card hero-card" style="border-color: #34d39940;">
-          <div class="zone-header" style="border-bottom-color: #34d39930;">
+        <div class="zone-card hero-card" style="border-color: #0d9e4e40;">
+          <div class="zone-header" style="border-bottom-color: #0d9e4e30;">
             <span class="zone-icon">🗳️</span>
-            <span class="zone-label" style="color: #34d399">MEME CLUB</span>
+            <span class="zone-label" style="color: #0d9e4e">MEME CLUB</span>
             <a href="https://6529.io/waves/d23af421-203d-4e37-abc1-4d9df840026c" target="_blank" class="zone-link">↗ wave</a>
           </div>
-          <div class="hero-value" style="color: #34d399">@nasimghanizadeh</div>
-          <div class="hero-stats"><span class="hero-sub"><span class="hero-sub-value" style="color: #34d399">15.7M</span> <span class="hero-sub-label">Votes</span></span><span class="hero-sub"><span class="hero-sub-value" style="color: #34d399">19</span> <span class="hero-sub-label">Voters</span></span></div>
+          <div class="hero-value" style="color: #0d9e4e">@nasimghanizadeh</div>
+          <div class="hero-stats"><span class="hero-sub"><span class="hero-sub-value" style="color: #0d9e4e">15.7M</span> <span class="hero-sub-label">Votes</span></span><span class="hero-sub"><span class="hero-sub-value" style="color: #0d9e4e">19</span> <span class="hero-sub-label">Voters</span></span></div>
         </div>
-        <div class="zone-card" style="border-color: #fbbf2440;">
-          <div class="zone-header" style="border-bottom-color: #fbbf2430;">
+        <div class="zone-card" style="border-color: #e8a20040;">
+          <div class="zone-header" style="border-bottom-color: #e8a20030;">
             <span class="zone-icon">🎯</span>
-            <span class="zone-label" style="color: #fbbf24">DO SOMETHING</span>
-            <a href="https://6529.io/waves/b6128077-ea78-4dd9-b381-52c4eadb2077" target="_blank" class="zone-link">↗ wave</a>
+            <span class="zone-label" style="color: #e8a200">DO SOMETHING</span>
+            <a href="https://6529.io/waves/22128d8c-e735-4605-a25a-db96c3124b0d" target="_blank" class="zone-link">↗ wave</a>
           </div>
           <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
             
               <div class="metric">
-                <div class="metric-value" style="color: #fbbf24">4</div>
-                <div class="metric-label">Reviewed</div>
+                <div class="metric-value" style="color: #e8a200">4</div>
+                <div class="metric-label">Submissions</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #fbbf24">9</div>
+                <div class="metric-value" style="color: #e8a200">9</div>
                 <div class="metric-label">Completed</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #fbbf24">9</div>
+                <div class="metric-value" style="color: #e8a200">10</div>
                 <div class="metric-label">Tracking</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #fbbf24">19</div>
+                <div class="metric-value" style="color: #e8a200">19</div>
                 <div class="metric-label">MS Wins</div>
               </div>
           </div>
         </div>
-        <div class="zone-card" style="border-color: #fb923c40;">
-          <div class="zone-header" style="border-bottom-color: #fb923c30;">
+        <div class="zone-card" style="border-color: #d94a0040;">
+          <div class="zone-header" style="border-bottom-color: #d94a0030;">
             <span class="zone-icon">👤</span>
-            <span class="zone-label" style="color: #fb923c">VETTING</span>
-            <a href="https://github.com/RegularDad6529/profile-vetting" target="_blank" class="zone-link">↗ wave</a>
+            <span class="zone-label" style="color: #d94a00">VETTING</span>
+            <a href="https://6529.io/waves/0ecb95d0-d8f2-48e8-8137-bfa71ee8593c" target="_blank" class="zone-link">↗ wave</a>
           </div>
           <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
             
               <div class="metric">
-                <div class="metric-value" style="color: #fb923c">50</div>
+                <div class="metric-value" style="color: #d94a00">50</div>
                 <div class="metric-label">Assessments</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #fb923c">86</div>
+                <div class="metric-value" style="color: #d94a00">86</div>
                 <div class="metric-label">Pitfalls</div>
               </div>
           </div>
         </div>
-        <div class="zone-card" style="border-color: #fb718540;">
-          <div class="zone-header" style="border-bottom-color: #fb718530;">
+        <div class="zone-card" style="border-color: #d6272840;">
+          <div class="zone-header" style="border-bottom-color: #d6272830;">
             <span class="zone-icon">🔍</span>
-            <span class="zone-label" style="color: #fb7185">SHILL WATCH — MAYBE DIVE BAR</span>
+            <span class="zone-label" style="color: #d62728">SHILL WATCH — MAYBE DIVE BAR</span>
             <a href="https://6529.io/waves/b38288e6-ca9d-45ce-8323-3dc5e094f04e" target="_blank" class="zone-link">↗ wave</a>
           </div>
           <div class="zone-metrics" style="grid-template-columns: repeat(1, 1fr);">
             
               <div class="metric">
-                <div class="metric-value" style="color: #fb7185">10</div>
+                <div class="metric-value" style="color: #d62728">10</div>
                 <div class="metric-label">Shills Caught</div>
               </div>
           </div>
         </div>
-        <div class="zone-card" style="border-color: #a78bfa40;">
-          <div class="zone-header" style="border-bottom-color: #a78bfa30;">
+        <div class="zone-card" style="border-color: #7b3fb540;">
+          <div class="zone-header" style="border-bottom-color: #7b3fb530;">
             <span class="zone-icon">📞</span>
-            <span class="zone-label" style="color: #a78bfa">COMPLAINTS</span>
-            <a href="https://6529.io/waves/40e0863d-d943-4fac-a508-ff8b2c6d32eb" target="_blank" class="zone-link">↗ wave</a>
+            <span class="zone-label" style="color: #7b3fb5">COMPLAINTS</span>
+            <a href="https://6529.io/waves/e65696b1-174b-427c-a503-85a2432553ed?divider=1212999" target="_blank" class="zone-link">↗ wave</a> · <a href="https://6uljbz36lnet24gdvqjltrgziipmcr5zfuycoc6jitn26igf7eba.arweave.net/9RaQ535bST1ww6wSucTZQh7BR7ktMCcLyUTbryDF-QI" target="_blank" class="zone-link">complaint report</a>
           </div>
           <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
             
               <div class="metric">
-                <div class="metric-value" style="color: #a78bfa">275</div>
+                <div class="metric-value" style="color: #7b3fb5">275</div>
                 <div class="metric-label">Cards Posted</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #a78bfa">35</div>
+                <div class="metric-value" style="color: #7b3fb5">35</div>
                 <div class="metric-label">Recruited</div>
               </div>
               <div class="metric">
-                <div class="metric-value" style="color: #a78bfa">1105</div>
+                <div class="metric-value" style="color: #7b3fb5">1106</div>
                 <div class="metric-label">Mentions</div>
               </div>
           </div>
         </div>
   </div>
   
-  <div class="footer">
-    TheManager Board · 6529 Daily Operations · <a href="https://github.com/RegularDad6529/themanager-scorecard">github.com/RegularDad6529/themanager-scorecard</a>
-  </div>
+  <div class="footer"></div>
 </div>
 </body>
 </html>

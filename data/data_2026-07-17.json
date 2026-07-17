@@ -1,11 +1,11 @@
 {
   "giphy": {
     "date": "2026-07-17",
-    "channel_uploads": "213",
+    "channel_uploads": "214",
     "channel_views": "117.4K",
-    "local_meme_cards": 193,
+    "local_meme_cards": 194,
     "local_complaint_cards": 20,
-    "approval_gifs": 1
+    "approval_gifs": 3
   },
   "meme_club": {
     "date": "2026-07-17",
@@ -67,17 +67,16 @@
     "total_jobs": 35,
     "active": 31,
     "paused": 4,
-    "errors": 2,
+    "errors": 1,
     "error_names": [
-      "Seeking Nomination Artist Vetting",
-      "GIF Submission Processor"
+      "Seeking Nomination Artist Vetting"
     ]
   },
   "do_something": {
     "date": "2026-07-17",
     "reviewed": 4,
     "completed": 9,
-    "tracking": 9,
+    "tracking": 10,
     "ms_won": 19,
     "memes_tracked": 16
   },
@@ -86,6 +85,6 @@
     "card_images_posted": 275,
     "complaints_seen": 160,
     "complainers_recruited": 35,
-    "mentions_handled": 1105
+    "mentions_handled": 1106
   }
 }

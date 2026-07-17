@@ -167,6 +167,9 @@ def generate_html(config, data):
         graph_url = zone.get("graph_url", "")
         if graph_url:
             link_html += f' <a href="{graph_url}" target="_blank" class="zone-link">📈 graph</a>'
+        # Extra links (giphy channel, tmcr, etc.)
+        for el in zone.get("extra_links", []):
+            link_html += f' · <a href="{el["url"]}" target="_blank" class="zone-link">{el["label"]}</a>'
         
         # Check for hero layout (winner on top, stats below)
         layout = zone.get("layout", "grid")
@@ -248,7 +251,7 @@ body {{
   font-family: 'JetBrains Mono', monospace;
   background: #f5f0e8;
   min-height: 100vh;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 0.5rem;
   color: #2a2520;
 }}
 
@@ -258,45 +261,36 @@ body {{
 }}
 
 .header {{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #d4cab8;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #d4cab8;
 }}
 
-.header-left {{
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}}
-
-.pulse-dot {{
-  width: 10px;
-  height: 10px;
-  background: #b5756b;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}}
-
-@keyframes pulse {{
-  0%, 100% {{ opacity: 1; }}
-  50% {{ opacity: 0.4; }}
-}}
-
-h1 {{
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
+.header-title {{
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #2a2520;
+  letter-spacing: -0.01em;
+  text-align: center;
+}}
+
+.header-second {{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}}
+
+.header-tagline {{
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: #968d80;
+  font-weight: 400;
 }}
 
 .header-date {{
-  color: #968d80;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  color: #b5756b;
 }}
 
 .zones {{
@@ -311,6 +305,9 @@ h1 {{
   border: 1px solid #e0d8cc;
   padding: 0.75rem;
   box-shadow: 0 2px 4px rgba(42,37,32,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }}
 
 .zone-header {{
@@ -320,6 +317,7 @@ h1 {{
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid #ede5d6;
+  flex-wrap: wrap;
 }}
 
 .zone-icon {{
@@ -327,17 +325,17 @@ h1 {{
 }}
 
 .zone-label {{
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  flex: 1;
+  margin-right: auto;
 }}
 
 .zone-link {{
   color: #c4b8a8;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   transition: color 0.2s;
 }}
 
@@ -348,6 +346,11 @@ h1 {{
 .zone-metrics {{
   display: grid;
   gap: 0.5rem;
+  flex: 1;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 0.25rem 0;
 }}
 
 /* Hero layout for MC winner */
@@ -358,7 +361,7 @@ h1 {{
 
 .hero-value {{
   font-family: 'Caveat', cursive;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   text-align: center;
   padding: 0.25rem 0.5rem 0.5rem;
@@ -380,7 +383,7 @@ h1 {{
 
 .hero-sub-value {{
   font-family: 'Caveat', cursive;
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   font-weight: 700;
 }}
 
@@ -399,7 +402,7 @@ h1 {{
 
 .metric-value {{
   font-family: 'Caveat', cursive;
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   line-height: 1.1;
 }}
@@ -429,20 +432,18 @@ h1 {{
 <body>
 <div class="scorecard">
   <div class="header">
-    <div class="header-left">
-      <div class="pulse-dot"></div>
-      <h1>{config.get('title', 'TheManager Scorecard')}</h1>
+    <div class="header-title">TheManager Report</div>
+    <div class="header-second">
+      <span class="header-tagline">Tracking agentic coordination</span>
+      <span class="header-date">{today}</span>
     </div>
-    <div class="header-date">{today}</div>
   </div>
   
   <div class="zones">
 {zones_html}
   </div>
   
-  <div class="footer">
-    TheManager Board · 6529 Daily Operations · <a href="https://github.com/RegularDad6529/themanager-scorecard">github.com/RegularDad6529/themanager-scorecard</a>
-  </div>
+  <div class="footer"></div>
 </div>
 </body>
 </html>"""

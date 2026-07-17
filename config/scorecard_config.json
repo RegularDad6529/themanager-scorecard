@@ -1,14 +1,17 @@
 {
-  "title": "TheManager Board",
+  "title": "TheManager Report",
   "subtitle": "6529 Daily Operations Dashboard",
   "zones": [
     {
       "id": "giphy",
       "label": "GIPHY",
-      "color": "#22d3ee",
-      "icon": "📊",
-      "wave_url": "https://giphy.com/RegularDad",
+      "color": "#1a75ff",
+      "icon": "🎞️",
+      "wave_url": "https://6529.io/waves/0984daca-482f-4bad-b53e-a9e9ea482109",
       "graph_url": "views.html",
+      "extra_links": [
+        {"label": "giphy", "url": "https://giphy.com/RegularDad"}
+      ],
       "metrics": [
         {"key": "channel_views", "label": "Total Views", "format": "string"},
         {"key": "channel_uploads", "label": "Uploads", "format": "string"},
@@ -19,7 +22,7 @@
     {
       "id": "meme_club",
       "label": "MEME CLUB",
-      "color": "#34d399",
+      "color": "#0d9e4e",
       "icon": "🗳️",
       "wave_url": "https://6529.io/waves/d23af421-203d-4e37-abc1-4d9df840026c",
       "layout": "hero",
@@ -32,11 +35,11 @@
     {
       "id": "do_something",
       "label": "DO SOMETHING",
-      "color": "#fbbf24",
+      "color": "#e8a200",
       "icon": "🎯",
-      "wave_url": "https://6529.io/waves/b6128077-ea78-4dd9-b381-52c4eadb2077",
+      "wave_url": "https://6529.io/waves/22128d8c-e735-4605-a25a-db96c3124b0d",
       "metrics": [
-        {"key": "reviewed", "label": "Reviewed", "format": "int"},
+        {"key": "reviewed", "label": "Submissions", "format": "int"},
         {"key": "completed", "label": "Completed", "format": "int"},
         {"key": "tracking", "label": "Tracking", "format": "int"},
         {"key": "ms_won", "label": "MS Wins", "format": "int"}
@@ -45,9 +48,9 @@
     {
       "id": "vetting",
       "label": "VETTING",
-      "color": "#fb923c",
+      "color": "#d94a00",
       "icon": "👤",
-      "wave_url": "https://github.com/RegularDad6529/profile-vetting",
+      "wave_url": "https://6529.io/waves/0ecb95d0-d8f2-48e8-8137-bfa71ee8593c",
       "metrics": [
         {"key": "total_assessments", "label": "Assessments", "format": "int"},
         {"key": "pitfalls", "label": "Pitfalls", "format": "int"}
@@ -56,7 +59,7 @@
     {
       "id": "shill_watch",
       "label": "SHILL WATCH — MAYBE DIVE BAR",
-      "color": "#fb7185",
+      "color": "#d62728",
       "icon": "🔍",
       "wave_url": "https://6529.io/waves/b38288e6-ca9d-45ce-8323-3dc5e094f04e",
       "metrics": [
@@ -66,9 +69,12 @@
     {
       "id": "complaints",
       "label": "COMPLAINTS",
-      "color": "#a78bfa",
+      "color": "#7b3fb5",
       "icon": "📞",
-      "wave_url": "https://6529.io/waves/40e0863d-d943-4fac-a508-ff8b2c6d32eb",
+      "wave_url": "https://6529.io/waves/e65696b1-174b-427c-a503-85a2432553ed?divider=1212999",
+      "extra_links": [
+        {"label": "complaint report", "url": "https://6uljbz36lnet24gdvqjltrgziipmcr5zfuycoc6jitn26igf7eba.arweave.net/9RaQ535bST1ww6wSucTZQh7BR7ktMCcLyUTbryDF-QI"}
+      ],
       "metrics": [
         {"key": "card_images_posted", "label": "Cards Posted", "format": "int"},
         {"key": "complainers_recruited", "label": "Recruited", "format": "int"},
