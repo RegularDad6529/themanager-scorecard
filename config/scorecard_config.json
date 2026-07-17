@@ -22,7 +22,6 @@
       "color": "#34d399",
       "icon": "🗳️",
       "wave_url": "https://6529.io/waves/d23af421-203d-4e37-abc1-4d9df840026c",
-      "layout": "hero",
       "metrics": [
         {"key": "current_winner", "label": "Leader", "format": "handle"},
         {"key": "current_winner_votes", "label": "Votes", "format": "votes"},

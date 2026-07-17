@@ -253,7 +253,7 @@ body {{
   font-family: 'JetBrains Mono', monospace;
   background: #020617;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1.25rem;
   color: white;
 }}
 
@@ -266,8 +266,8 @@ body {{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid #1e293b;
 }}
 
@@ -306,23 +306,22 @@ h1 {{
 .zones {{
   display: grid;
   grid-template-columns: repeat({zones_grid}, 1fr);
-  gap: 1rem;
+  gap: 0.75rem;
 }}
 
 .zone-card {{
   background: rgba(15, 23, 42, 0.6);
   border-radius: 0.75rem;
   border: 1px solid;
-  padding: 1.25rem;
-  transition: transform 0.2s;
+  padding: 0.75rem;
 }}
 
 .zone-header {{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding-bottom: 0.75rem;
-  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
   border-bottom: 1px solid;
 }}
 
@@ -352,47 +351,8 @@ h1 {{
 .zone-metrics {{
   display: grid;
   gap: 0.5rem;
-  padding: 0.75rem;
 }}
 
-/* Hero layout for MC winner */
-.hero-card {{
-  display: flex;
-  flex-direction: column;
-}}
-
-.hero-value {{
-  font-size: 1.75rem;
-  font-weight: 800;
-  text-align: center;
-  padding: 0.5rem 0.75rem;
-  letter-spacing: -0.02em;
-}}
-
-.hero-stats {{
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 0 0.75rem 0.75rem;
-}}
-
-.hero-sub {{
-  display: flex;
-  align-items: baseline;
-  gap: 0.25rem;
-}}
-
-.hero-sub-value {{
-  font-size: 1.1rem;
-  font-weight: 700;
-}}
-
-.hero-sub-label {{
-  font-size: 0.625rem;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}}
 .metric {{
   display: flex;
   flex-direction: column;
@@ -451,7 +411,7 @@ h1 {{
     return html
 
 def screenshot_html(html_path, png_path, width=1200, height=800):
-    """Use Playwright to screenshot the HTML to a PNG."""
+    """Use Playwright to screenshot the HTML to a PNG, cropped to content."""
     from playwright.sync_api import sync_playwright
     
     with sync_playwright() as p:
@@ -459,7 +419,12 @@ def screenshot_html(html_path, png_path, width=1200, height=800):
         page = browser.new_page(viewport={"width": width, "height": height})
         page.goto(f"file://{html_path}")
         page.wait_for_timeout(500)  # Wait for fonts to load
-        page.screenshot(path=png_path, full_page=True)
+        # Screenshot only the scorecard div, not the full page
+        elt = page.query_selector(".scorecard")
+        if elt:
+            elt.screenshot(path=png_path)
+        else:
+            page.screenshot(path=png_path, full_page=True)
         browser.close()
 
 def generate_views_graph(history):
