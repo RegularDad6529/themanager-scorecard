@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheManager Scorecard — 2026-07-17</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: #020617;
+  min-height: 100vh;
+  padding: 2rem;
+  color: white;
+}
+
+.scorecard {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background: #22d3ee;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.header-date {
+  color: #475569;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.zones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.zone-card {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 0.75rem;
+  border: 1px solid;
+  padding: 1.25rem;
+  transition: transform 0.2s;
+}
+
+.zone-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+.zone-icon {
+  font-size: 1.1rem;
+}
+
+.zone-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.zone-metrics {
+  display: grid;
+  gap: 1rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.metric-label {
+  font-size: 0.65rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1e293b;
+  color: #475569;
+  font-size: 0.7rem;
+}
+
+.footer a {
+  color: #475569;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<div class="scorecard">
+  <div class="header">
+    <div class="header-left">
+      <div class="pulse-dot"></div>
+      <h1>TheManager Scorecard</h1>
+    </div>
+    <div class="header-date">2026-07-17</div>
+  </div>
+  
+  <div class="zones">
+
+        <div class="zone-card" style="border-color: #22d3ee40;">
+          <div class="zone-header" style="border-bottom-color: #22d3ee30;">
+            <span class="zone-icon">📊</span>
+            <span class="zone-label" style="color: #22d3ee">GIPHY</span>
+          </div>
+          <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
+            
+              <div class="metric">
+                <div class="metric-value" style="color: #22d3ee">117.4K</div>
+                <div class="metric-label">Total Views</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #22d3ee">182</div>
+                <div class="metric-label">Uploads</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #22d3ee">193</div>
+                <div class="metric-label">Meme Cards</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #22d3ee">2</div>
+                <div class="metric-label">Failed</div>
+              </div>
+          </div>
+        </div>
+        <div class="zone-card" style="border-color: #34d39940;">
+          <div class="zone-header" style="border-bottom-color: #34d39930;">
+            <span class="zone-icon">🗳️</span>
+            <span class="zone-label" style="color: #34d399">MEME CLUB</span>
+          </div>
+          <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
+            
+              <div class="metric">
+                <div class="metric-value" style="color: #34d399">@RegularDad</div>
+                <div class="metric-label">Leader</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #34d399">15.7M</div>
+                <div class="metric-label">Votes</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #34d399">19</div>
+                <div class="metric-label">Voters</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #34d399">22</div>
+                <div class="metric-label">Submissions</div>
+              </div>
+          </div>
+        </div>
+        <div class="zone-card" style="border-color: #fb718540;">
+          <div class="zone-header" style="border-bottom-color: #fb718530;">
+            <span class="zone-icon">🔍</span>
+            <span class="zone-label" style="color: #fb7185">SHILL WATCH</span>
+          </div>
+          <div class="zone-metrics" style="grid-template-columns: repeat(1, 1fr);">
+            
+              <div class="metric">
+                <div class="metric-value" style="color: #fb7185">10</div>
+                <div class="metric-label">Shills Caught</div>
+              </div>
+          </div>
+        </div>
+        <div class="zone-card" style="border-color: #fbbf2440;">
+          <div class="zone-header" style="border-bottom-color: #fbbf2430;">
+            <span class="zone-icon">🎯</span>
+            <span class="zone-label" style="color: #fbbf24">DO SOMETHING</span>
+          </div>
+          <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
+            
+              <div class="metric">
+                <div class="metric-value" style="color: #fbbf24">23</div>
+                <div class="metric-label">Submissions</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #fbbf24">9</div>
+                <div class="metric-label">Completed</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #fbbf24">9</div>
+                <div class="metric-label">In Progress</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #fbbf24">19</div>
+                <div class="metric-label">MS Wins</div>
+              </div>
+          </div>
+        </div>
+        <div class="zone-card" style="border-color: #a78bfa40;">
+          <div class="zone-header" style="border-bottom-color: #a78bfa30;">
+            <span class="zone-icon">📞</span>
+            <span class="zone-label" style="color: #a78bfa">COMPLAINTS</span>
+          </div>
+          <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
+            
+              <div class="metric">
+                <div class="metric-value" style="color: #a78bfa">275</div>
+                <div class="metric-label">Cards Posted</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #a78bfa">35</div>
+                <div class="metric-label">Recruited</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #a78bfa">1101</div>
+                <div class="metric-label">Mentions</div>
+              </div>
+          </div>
+        </div>
+        <div class="zone-card" style="border-color: #fb923c40;">
+          <div class="zone-header" style="border-bottom-color: #fb923c30;">
+            <span class="zone-icon">👤</span>
+            <span class="zone-label" style="color: #fb923c">VETTING</span>
+          </div>
+          <div class="zone-metrics" style="grid-template-columns: repeat(2, 1fr);">
+            
+              <div class="metric">
+                <div class="metric-value" style="color: #fb923c">50</div>
+                <div class="metric-label">Assessments</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #fb923c">86</div>
+                <div class="metric-label">Pitfalls</div>
+              </div>
+              <div class="metric">
+                <div class="metric-value" style="color: #fb923c">66</div>
+                <div class="metric-label">Commits (7d)</div>
+              </div>
+          </div>
+        </div>
+  </div>
+  
+  <div class="footer">
+    TheManager Scorecard · 6529 Daily Operations · <a href="https://github.com/RegularDad6529/themanager-scorecard">github.com/RegularDad6529/themanager-scorecard</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{
+  "giphy": {
+    "date": "2026-07-17",
+    "channel_uploads": "182",
+    "channel_views": "117.4K",
+    "local_meme_cards": 193,
+    "local_complaint_cards": 20,
+    "failed": 2
+  },
+  "meme_club": {
+    "date": "2026-07-17",
+    "active_submissions": 22,
+    "unique_voters": 9,
+    "recent_chat_participants": 12,
+    "current_winner": "RegularDad",
+    "current_winner_votes": 15720171,
+    "current_winner_voters": 19,
+    "top_3": [
+      {
+        "author": "RegularDad",
+        "votes": 15720171,
+        "voters": 19
+      },
+      {
+        "author": "brookr",
+        "votes": 6200661,
+        "voters": 10
+      },
+      {
+        "author": "RegularDad",
+        "votes": 4673618,
+        "voters": 6
+      }
+    ]
+  },
+  "shill_watch": {
+    "date": "2026-07-17",
+    "total_shills_caught": 10,
+    "by_author": {
+      "GarryB1rd": 1,
+      "DeyvisMalta": 2,
+      "DeltaSauce": 1,
+      "meysvm": 1,
+      "gpebbles": 1,
+      "MadaCollects": 1,
+      "PGebbles": 1,
+      "Sherie_Margaret": 1,
+      "ebtexam": 1
+    },
+    "by_reason": {
+      "external_link_self_promo": 1,
+      "kg_submission_shill": 1,
+      "ms_submission_shill": 2,
+      "drive_by_external_link": 1,
+      "marketplace_self_promo": 3,
+      "test": 1,
+      "self_promo_art_mint": 1
+    }
+  },
+  "vetting": {
+    "date": "2026-07-17",
+    "total_assessments": 50,
+    "weekly_commits": 66,
+    "pitfalls": 86
+  },
+  "cron": {
+    "date": "2026-07-17",
+    "total_jobs": 35,
+    "active": 31,
+    "paused": 4,
+    "errors": 2,
+    "error_names": [
+      "Seeking Nomination Artist Vetting",
+      "GIF Submission Processor"
+    ]
+  },
+  "do_something": {
+    "date": "2026-07-17",
+    "total_submissions": 23,
+    "completed": 9,
+    "in_progress": 9,
+    "ms_won": 19,
+    "memes_tracked": 16
+  },
+  "complaints": {
+    "date": "2026-07-17",
+    "card_images_posted": 275,
+    "complaints_seen": 160,
+    "complainers_recruited": 35,
+    "mentions_handled": 1101
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "title": "TheManager Scorecard",
+  "subtitle": "6529 Daily Operations Dashboard",
+  "zones": [
+    {
+      "id": "giphy",
+      "label": "GIPHY",
+      "color": "#22d3ee",
+      "icon": "\ud83d\udcca",
+      "metrics": [
+        {
+          "key": "channel_views",
+          "label": "Total Views",
+          "format": "string"
+        },
+        {
+          "key": "channel_uploads",
+          "label": "Uploads",
+          "format": "string"
+        },
+        {
+          "key": "local_meme_cards",
+          "label": "Meme Cards",
+          "format": "int"
+        },
+        {
+          "key": "failed",
+          "label": "Failed",
+          "format": "int"
+        }
+      ]
+    },
+    {
+      "id": "meme_club",
+      "label": "MEME CLUB",
+      "color": "#34d399",
+      "icon": "\ud83d\uddf3\ufe0f",
+      "metrics": [
+        {
+          "key": "current_winner",
+          "label": "Leader",
+          "format": "handle"
+        },
+        {
+          "key": "current_winner_votes",
+          "label": "Votes",
+          "format": "votes"
+        },
+        {
+          "key": "current_winner_voters",
+          "label": "Voters",
+          "format": "int"
+        },
+        {
+          "key": "active_submissions",
+          "label": "Submissions",
+          "format": "int"
+        }
+      ]
+    },
+    {
+      "id": "shill_watch",
+      "label": "SHILL WATCH",
+      "color": "#fb7185",
+      "icon": "\ud83d\udd0d",
+      "metrics": [
+        {
+          "key": "total_shills_caught",
+          "label": "Shills Caught",
+          "format": "int"
+        }
+      ]
+    },
+    {
+      "id": "do_something",
+      "label": "DO SOMETHING",
+      "color": "#fbbf24",
+      "icon": "\ud83c\udfaf",
+      "metrics": [
+        {
+          "key": "total_submissions",
+          "label": "Submissions",
+          "format": "int"
+        },
+        {
+          "key": "completed",
+          "label": "Completed",
+          "format": "int"
+        },
+        {
+          "key": "in_progress",
+          "label": "In Progress",
+          "format": "int"
+        },
+        {
+          "key": "ms_won",
+          "label": "MS Wins",
+          "format": "int"
+        }
+      ]
+    },
+    {
+      "id": "complaints",
+      "label": "COMPLAINTS",
+      "color": "#a78bfa",
+      "icon": "\ud83d\udcde",
+      "metrics": [
+        {
+          "key": "card_images_posted",
+          "label": "Cards Posted",
+          "format": "int"
+        },
+        {
+          "key": "complainers_recruited",
+          "label": "Recruited",
+          "format": "int"
+        },
+        {
+          "key": "mentions_handled",
+          "label": "Mentions",
+          "format": "int"
+        }
+      ]
+    },
+    {
+      "id": "vetting",
+      "label": "VETTING",
+      "color": "#fb923c",
+      "icon": "\ud83d\udc64",
+      "metrics": [
+        {
+          "key": "total_assessments",
+          "label": "Assessments",
+          "format": "int"
+        },
+        {
+          "key": "pitfalls",
+          "label": "Pitfalls",
+          "format": "int"
+        },
+        {
+          "key": "weekly_commits",
+          "label": "Commits (7d)",
+          "format": "int"
+        }
+      ]
+    }
+  ]
+}
