@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giphy Engagement Rate — RegularDad</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  padding: 20px;
+}
+h1 {
+  font-size: 1.5rem;
+  color: #58a6ff;
+  margin-bottom: 4px;
+}
+.subtitle {
+  color: #8b949e;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+input[type="text"] {
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 250px;
+}
+input[type="text"]:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+select {
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+.stats {
+  font-size: 0.8rem;
+  color: #8b949e;
+  margin-left: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th {
+  background: #161b22;
+  color: #8b949e;
+  text-align: left;
+  padding: 10px 14px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 2px solid #30363d;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+th:hover { color: #58a6ff; }
+th .arrow { font-size: 0.7rem; margin-left: 4px; opacity: 0.5; }
+th.sorted .arrow { opacity: 1; color: #58a6ff; }
+td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #21262d;
+}
+tr:hover td { background: #161b22; }
+.engagement-high { color: #3fb950; font-weight: 600; }
+.engagement-mid { color: #d29922; }
+.engagement-zero { color: #484f58; }
+a { color: #58a6ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.content-type-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  background: #1f6feb22;
+  color: #58a6ff;
+  border: 1px solid #1f6feb44;
+}
+.gif-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #30363d;
+  vertical-align: middle;
+}
+.preview-cell { display: flex; align-items: center; gap: 10px; }
+.preview-cell img { flex-shrink: 0; }
+.content-id { font-family: 'SF Mono', monospace; font-size: 0.8rem; color: #8b949e; }
+</style>
+</head>
+<body>
+
+<h1>Giphy Engagement Rate — RegularDad</h1>
+<p class="subtitle">47 GIFs · Sortable & filterable · Click column headers to sort</p>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search term or ID..." oninput="filterTable()">
+  <select id="engagementFilter" onchange="filterTable()">
+    <option value="all">All engagement rates</option>
+    <option value="high">High (≥3.0)</option>
+    <option value="mid">Medium (0.1–2.9)</option>
+    <option value="zero">Zero (0.0)</option>
+  </select>
+  <span class="stats" id="stats"></span>
+</div>
+
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th onclick="sortBy('term')">Term <span class="arrow">↕</span></th>
+      <th onclick="sortBy('engagement_rate')">Engagement Rate <span class="arrow">↕</span></th>
+      <th onclick="sortBy('content_type')">Type <span class="arrow">↕</span></th>
+      <th onclick="sortBy('content_id')">Giphy ID <span class="arrow">↕</span></th>
+      <th>Preview</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<script>
+const data = [
+  {content_id:"2oeEnGwBMZrcauSJol",term:"identity",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/2oeEnGwBMZrcauSJol"},
+  {content_id:"3TDnqgms5s1ltvsKse",term:"telephone game",engagement_rate:2.78,content_type:"GIF",content_url:"https://giphy.com/gifs/3TDnqgms5s1ltvsKse"},
+  {content_id:"Cr3FVSW1JHAnYIICAE",term:"burden",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/Cr3FVSW1JHAnYIICAE"},
+  {content_id:"Cr3FVSW1JHAnYIICAE",term:"atlas",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/Cr3FVSW1JHAnYIICAE"},
+  {content_id:"Fp4aWBkldM8KleOhdN",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/Fp4aWBkldM8KleOhdN"},
+  {content_id:"Fp4aWBkldM8KleOhdN",term:"hopi",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/Fp4aWBkldM8KleOhdN"},
+  {content_id:"GGZ3DpJFI1pfTKZCOR",term:"ululation",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/GGZ3DpJFI1pfTKZCOR"},
+  {content_id:"OBoSft3uMfLclGgsTg",term:"seize",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/OBoSft3uMfLclGgsTg"},
+  {content_id:"OnYHFqNYqWDcnpY9rL",term:"rodro",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/OnYHFqNYqWDcnpY9rL"},
+  {content_id:"Y71EBNxQCFHEnLybAE",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/Y71EBNxQCFHEnLybAE"},
+  {content_id:"cL0rBjwZq5I3Mu7Wn7",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/cL0rBjwZq5I3Mu7Wn7"},
+  {content_id:"g8Zey8LxX6oNgDNilv",term:"countryside",engagement_rate:1.39,content_type:"GIF",content_url:"https://giphy.com/gifs/g8Zey8LxX6oNgDNilv"},
+  {content_id:"2Y7dKdyVruOgcm2x2o",term:"metal detector",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/2Y7dKdyVruOgcm2x2o"},
+  {content_id:"3F3phss3EcG92XBaHW",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/3F3phss3EcG92XBaHW"},
+  {content_id:"3Wa8Omwp6wvmjFeqyj",term:"never ending summer",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/3Wa8Omwp6wvmjFeqyj"},
+  {content_id:"3Wa8Omwp6wvmjFeqyj",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/3Wa8Omwp6wvmjFeqyj"},
+  {content_id:"9VKYJzGSbTzP3cGvpq",term:"starlight",engagement_rate:1.75,content_type:"GIF",content_url:"https://giphy.com/gifs/9VKYJzGSbTzP3cGvpq"},
+  {content_id:"C2BDUUyF4GZhpldNDb",term:"to the moon",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/C2BDUUyF4GZhpldNDb"},
+  {content_id:"C2BDUUyF4GZhpldNDb",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/C2BDUUyF4GZhpldNDb"},
+  {content_id:"FSa7cSdu8tay1AuKIw",term:"multipass",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/FSa7cSdu8tay1AuKIw"},
+  {content_id:"J8JUKNXJc2WF2z7qvs",term:"endurance",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/J8JUKNXJc2WF2z7qvs"},
+  {content_id:"KPU6MgQej8UNUBjVZH",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/KPU6MgQej8UNUBjVZH"},
+  {content_id:"Nmt2bi0fpmjxafUsa0",term:"6529",engagement_rate:4.35,content_type:"GIF",content_url:"https://giphy.com/gifs/Nmt2bi0fpmjxafUsa0"},
+  {content_id:"TgI6WPf0kSIHKW0Nv2",term:"red sky",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/TgI6WPf0kSIHKW0Nv2"},
+  {content_id:"TixV20zvX7igTReXoX",term:"dada",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/TixV20zvX7igTReXoX"},
+  {content_id:"TstUoTHJU8fxC8qwxc",term:"invasion",engagement_rate:1.12,content_type:"GIF",content_url:"https://giphy.com/gifs/TstUoTHJU8fxC8qwxc"},
+  {content_id:"VrKGm0dzVgLs7bxDyE",term:"absurd",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/VrKGm0dzVgLs7bxDyE"},
+  {content_id:"dK8vldi49HG7SbSGHv",term:"busy",engagement_rate:3.85,content_type:"GIF",content_url:"https://giphy.com/gifs/dK8vldi49HG7SbSGHv"},
+  {content_id:"fLMJvQvdGA8xzvz1U7",term:"6529",engagement_rate:8.00,content_type:"GIF",content_url:"https://giphy.com/gifs/fLMJvQvdGA8xzvz1U7"},
+  {content_id:"gV1gWKReHqdoHydTP9",term:"noir",engagement_rate:0.55,content_type:"GIF",content_url:"https://giphy.com/gifs/gV1gWKReHqdoHydTP9"},
+  {content_id:"hDyz3iTJPxd34juGq4",term:"fury",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/hDyz3iTJPxd34juGq4"},
+  {content_id:"n2r7VhPGhQW9Q9NGvz",term:"seize",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/n2r7VhPGhQW9Q9NGvz"},
+  {content_id:"nfP3OiJeK7vJpFgFHE",term:"colony",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/nfP3OiJeK7vJpFgFHE"},
+  {content_id:"nfP3OiJeK7vJpFgFHE",term:"busy",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/nfP3OiJeK7vJpFgFHE"},
+  {content_id:"qaYvf1exr3FuETQAwL",term:"genesis",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/qaYvf1exr3FuETQAwL"},
+  {content_id:"sx71PjHjIsaznbubjk",term:"transfer",engagement_rate:0.16,content_type:"GIF",content_url:"https://giphy.com/gifs/sx71PjHjIsaznbubjk"},
+  {content_id:"sx71PjHjIsaznbubjk",term:"jn",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/sx71PjHjIsaznbubjk"},
+  {content_id:"uZVi4yy73J5Wz8kmXA",term:"6529",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/uZVi4yy73J5Wz8kmXA"},
+  {content_id:"uZVi4yy73J5Wz8kmXA",term:"abduction",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/uZVi4yy73J5Wz8kmXA"},
+  {content_id:"xHubM4VAGAwMX4VNuo",term:"6529",engagement_rate:4.00,content_type:"GIF",content_url:"https://giphy.com/gifs/xHubM4VAGAwMX4VNuo"},
+  {content_id:"zV6nfNOzKwTx9ZsILi",term:"prehistoric",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/zV6nfNOzKwTx9ZsILi"},
+  {content_id:"zhVpZKR33LUS9zQDqb",term:"grit",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/zhVpZKR33LUS9zQDqb"},
+  {content_id:"9XOwNkSkxnytEuq8Qo",term:"dystopia",engagement_rate:0.78,content_type:"GIF",content_url:"https://giphy.com/gifs/9XOwNkSkxnytEuq8Qo"},
+  {content_id:"iBdKe04I0TiccUABPt",term:"pixelated",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/iBdKe04I0TiccUABPt"},
+  {content_id:"BWa4feWtzgk7S1PPNG",term:"hachimi",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/BWa4feWtzgk7S1PPNG"},
+  {content_id:"GzF2ALC6PTIB8QoK59",term:"mab",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/GzF2ALC6PTIB8QoK59"},
+  {content_id:"oQi60WBSHQRqavIsDU",term:"bryan johnson",engagement_rate:0.00,content_type:"GIF",content_url:"https://giphy.com/gifs/oQi60WBSHQRqavIsDU"},
+];
+
+let sortKey = 'engagement_rate';
+let sortDir = 'desc';
+
+function sortBy(key) {
+  if (sortKey === key) {
+    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortKey = key;
+    sortDir = (key === 'engagement_rate') ? 'desc' : 'asc';
+  }
+  document.querySelectorAll('th').forEach(th => {
+    th.classList.remove('sorted');
+    th.querySelector('.arrow').textContent = '↕';
+  });
+  const ths = document.querySelectorAll('th');
+  const idx = ['term','engagement_rate','content_type','content_id','preview'].indexOf(key);
+  if (idx < 4) {
+    ths[idx].classList.add('sorted');
+    ths[idx].querySelector('.arrow').textContent = sortDir === 'asc' ? '↑' : '↓';
+  }
+  render();
+}
+
+function engClass(v) {
+  if (v >= 3.0) return 'engagement-high';
+  if (v > 0) return 'engagement-mid';
+  return 'engagement-zero';
+}
+
+function render() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const engFilter = document.getElementById('engagementFilter').value;
+  
+  let filtered = data.filter(d => {
+    if (search && !d.term.toLowerCase().includes(search) && !d.content_id.toLowerCase().includes(search)) return false;
+    if (engFilter === 'high' && d.engagement_rate < 3.0) return false;
+    if (engFilter === 'mid' && (d.engagement_rate < 0.1 || d.engagement_rate >= 3.0)) return false;
+    if (engFilter === 'zero' && d.engagement_rate > 0) return false;
+    return true;
+  });
+  
+  filtered.sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (typeof av === 'string') {
+      return sortDir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    }
+    return sortDir === 'asc' ? av - bv : bv - av;
+  });
+  
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = filtered.map(d => `
+    <tr>
+      <td>${d.term}</td>
+      <td class="${engClass(d.engagement_rate)}">${d.engagement_rate.toFixed(2)}%</td>
+      <td><span class="content-type-badge">${d.content_type}</span></td>
+      <td><a href="${d.content_url}" target="_blank"><span class="content-id">${d.content_id}</span></a></td>
+      <td><div class="preview-cell">
+        <img class="gif-thumb" src="https://media.giphy.com/media/${d.content_id}/giphy-downsized.gif" alt="${d.term}" loading="lazy" onerror="this.style.display='none'">
+        <a href="${d.content_url}" target="_blank">View on Giphy ↗</a>
+      </div></td>
+    </tr>
+  `).join('');
+  
+  document.getElementById('stats').textContent = `${filtered.length} of ${data.length} rows`;
+}
+
+function filterTable() { render(); }
+
+render();
+</script>
+</body>
+</html>
