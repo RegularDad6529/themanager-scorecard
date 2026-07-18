@@ -12,9 +12,12 @@
     "active_submissions": 23,
     "unique_voters": 88,
     "recent_chat_participants": 12,
-    "current_winner": "Bowo",
-    "current_winner_votes": 11938418,
-    "current_winner_voters": 7,
+    "current_winner": "sonyart",
+    "current_winner_votes": 6044673,
+    "current_winner_title": "The Key to Freedom",
+    "current_leader": "Bowo",
+    "current_leader_votes": 11938418,
+    "current_leader_voters": 7,
     "top_3": [
       {
         "artist": "Bowo",
@@ -65,8 +68,8 @@
   },
   "cron": {
     "date": "2026-07-18",
-    "total_jobs": 35,
-    "active": 31,
+    "total_jobs": 36,
+    "active": 32,
     "paused": 4,
     "errors": 1,
     "error_names": [
