@@ -76,8 +76,8 @@
   },
   "cron": {
     "date": "2026-07-23",
-    "total_jobs": 39,
-    "active": 35,
+    "total_jobs": 40,
+    "active": 36,
     "paused": 4,
     "errors": 1,
     "error_names": [
@@ -97,6 +97,6 @@
     "card_images_posted": 292,
     "complaints_seen": 160,
     "complainers_recruited": 43,
-    "mentions_handled": 1410
+    "mentions_handled": 1420
   }
 }
