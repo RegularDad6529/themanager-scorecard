@@ -67,6 +67,17 @@
       ]
     },
     {
+      "id": "help_desk",
+      "label": "HELP DESK",
+      "color": "#0ea5e9",
+      "icon": "🛠️",
+      "wave_url": "",
+      "metrics": [
+        {"key": "help_desk_tickets", "label": "Tickets", "format": "int"},
+        {"key": "help_desk_people", "label": "People Helped", "format": "int"}
+      ]
+    },
+    {
       "id": "complaints",
       "label": "COMPLAINTS",
       "color": "#7b3fb5",
