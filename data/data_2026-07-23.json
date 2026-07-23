@@ -5,25 +5,25 @@
     "channel_views": "829K",
     "local_meme_cards": 257,
     "local_complaint_cards": 20,
-    "approval_gifs": 7
+    "approval_gifs": 8
   },
   "meme_club": {
     "date": "2026-07-23",
-    "active_submissions": 25,
-    "unique_voters": 96,
+    "active_submissions": 26,
+    "unique_voters": 97,
     "recent_chat_participants": 13,
     "current_winner": "Bowo",
     "current_winner_votes": 12038418,
     "current_winner_title": "Fully Exposed",
-    "current_winner_voters": 8,
+    "current_winner_voters": 9,
     "current_leader": "Bowo",
-    "current_leader_votes": 12038418,
-    "current_leader_voters": 8,
+    "current_leader_votes": 12046188,
+    "current_leader_voters": 9,
     "top_3": [
       {
         "artist": "Bowo",
-        "votes": 12038418,
-        "voters": 8
+        "votes": 12046188,
+        "voters": 9
       },
       {
         "artist": "sonyart",
@@ -39,14 +39,14 @@
   },
   "shill_watch": {
     "date": "2026-07-23",
-    "total_shills_caught": 12,
+    "total_shills_caught": 13,
     "by_author": {
       "GarryB1rd": 1,
       "DeyvisMalta": 2,
       "DeltaSauce": 1,
       "meysvm": 1,
       "gpebbles": 1,
-      "MadaCollects": 2,
+      "MadaCollects": 3,
       "PGebbles": 1,
       "Sherie_Margaret": 1,
       "ebtexam": 1,
@@ -55,7 +55,7 @@
     "by_reason": {
       "external_link_self_promo": 1,
       "kg_submission_shill": 1,
-      "ms_submission_shill": 2,
+      "ms_submission_shill": 3,
       "drive_by_external_link": 1,
       "marketplace_self_promo": 3,
       "test": 1,
@@ -86,7 +86,7 @@
   },
   "do_something": {
     "date": "2026-07-23",
-    "reviewed": 7,
+    "reviewed": 8,
     "completed": 9,
     "tracking": 10,
     "ms_won": 19,
@@ -94,9 +94,9 @@
   },
   "complaints": {
     "date": "2026-07-23",
-    "card_images_posted": 292,
+    "card_images_posted": 296,
     "complaints_seen": 160,
     "complainers_recruited": 43,
-    "mentions_handled": 1420
+    "mentions_handled": 1512
   }
 }
